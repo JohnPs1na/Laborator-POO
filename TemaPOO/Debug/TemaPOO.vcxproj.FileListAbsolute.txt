@@ -1,0 +1,2 @@
+C:\Users\denih\source\repos\TemaPOO\Debug\TemaPOO.exe
+C:\Users\denih\source\repos\TemaPOO\Debug\TemaPOO.pdb

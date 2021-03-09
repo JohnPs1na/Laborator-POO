@@ -1,0 +1,3 @@
+﻿  TemaPOO.cpp
+C:\Users\denih\source\repos\TemaPOO\TemaPOO.cpp(348,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  TemaPOO.vcxproj -> C:\Users\denih\source\repos\TemaPOO\Debug\TemaPOO.exe
