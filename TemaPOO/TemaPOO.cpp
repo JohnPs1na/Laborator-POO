@@ -23,7 +23,7 @@
 
 using namespace std;
 
-string listaProduse[11] = { "varza","paine","faina","vin","cartofi","jucarii","lapte","mere","snickers",/*bere*/"blonda",/*bere*/"bruna" };
+string ProductList[11] = { "varza","paine","faina","vin","cartofi","jucarii","lapte","mere","snickers",/*bere*/"blonda",/*bere*/"bruna" };
 
 class Produs
 {
@@ -38,20 +38,46 @@ public:
         this->pret = pret;
         this->cant = cant;
     }
+
+    Produs(const Produs& p)
+    {
+        this->nume = p.nume;
+        this->pret = p.pret;
+        this->cant = p.cant;
+    }
     ~Produs()
     {
         //cout<<"destructor";
     }
 #pragma region set&get
-    void setNume(string nume) { this->nume = nume; }
-    void setPret(int pret) { this->pret = pret; }
-    void setCant(int cant) { this->cant = cant; }
+    void setNume(string nume)
+    {
+        this->nume = nume;
+    }
+    void setPret(int pret)
+    {
+        this->pret = pret;
+    }
+    void setCant(int cant)
+    {
+        this->cant = cant;
+    }
 
-    string getNume() { return nume; }
-    int getPret() { return pret; }
-    int getCant() { return cant; }
+    string getNume()
+    {
+        return nume;
+    }
+    int getPret()
+    {
+        return pret;
+    }
+    int getCant()
+    {
+        return cant;
+    }
 
-    void setPret() {
+    void setPret()
+    {
         if (nume == "varza" or nume == "Varza")
             pret = 5 * cant;
         else if (nume == "paine" or nume == "Paine")
@@ -89,18 +115,27 @@ class Client
     Produs listaProduse[11];
     int totalPrice;
 public:
-    Client() {
+    Client()
+    {
         this->money = rand() % (100 + 1) + 100;
         this->cateProduse = 2 + rand() % 5;
     }
 
 #pragma region Set&Get
-    void setMoney(int money) { this->money = money; }
-    void setCateProduse(int cateProduse) { this->cateProduse = cateProduse; }
+    void setMoney(int money)
+    {
+        this->money = money;
+    }
+    void setCateProduse(int cateProduse)
+    {
+        this->cateProduse = cateProduse;
+    }
 
-    void setList() {
+    void setList()
+    {
         cout << "Lista Clientului: (produs cantitate)\n";
-        for (int i = 0; i < cateProduse; i++) {
+        for (int i = 0; i < cateProduse; i++)
+        {
             cin >> listaProduse[i];
             if (listaProduse[i].getNume() == "bere" or listaProduse[i].getNume() == "Bere")
             {
@@ -114,6 +149,25 @@ public:
             else
                 listaProduse[i].setPret();
         }
+    }
+
+    void generateList()
+    {
+        int a[11] = { 0 };
+        int i = 0;
+        cout << "Lista Clientului: (produs cantitate)\n";
+        do {
+            int x = rand() % 11;
+            if (!a[x])
+            {
+                int cant = rand() % 10 + 1;
+                a[x] = 1;
+                listaProduse[i].setNume(ProductList[x]);
+                listaProduse[i].setCant(cant);
+                listaProduse[i].setPret();
+                i++;
+            }
+        } while (i < cateProduse);
     }
 
     void idxSetCant(int i, int x)
@@ -130,22 +184,34 @@ public:
     {
         int j = 0;
         int max = listaProduse[0].getPret();
-            for (int i = 0; i < 11; i++)
+        for (int i = 0; i < 11; i++)
+        {
+            if (listaProduse[i].getPret() > max)
             {
-                if (listaProduse[i].getPret() > max)
-                {
-                    max = listaProduse[i].getPret();
-                    j = i;
-                }
+                max = listaProduse[i].getPret();
+                j = i;
             }
+        }
         return j;
     }
 
-    Produs* getListaProduse() { return listaProduse; }
+    Produs* getListaProduse()
+    {
+        return listaProduse;
+    }
 
-    int getMoney() { return money; }
-    int getCateProduse() { return cateProduse; }
-    int getTotalPrice() { return totalPrice; }
+    int getMoney()
+    {
+        return money;
+    }
+    int getCateProduse()
+    {
+        return cateProduse;
+    }
+    int getTotalPrice()
+    {
+        return totalPrice;
+    }
 #pragma endregion
 
     void calculateTotalPrice()
@@ -170,22 +236,35 @@ public:
         int i = getidxMaxPret();
         listaProduse[i].setCant(listaProduse[i].getCant() - 1);
         listaProduse[i].setPret();
-        cout << "returnez 1 obiect de tip " << listaProduse[i].getNume()<< endl;
+        cout << "returneaza 1 obiect de tip " << listaProduse[i].getNume() << endl;
+    }
+
+    void getNormalPrice(int idx)
+    {
+        while (money < totalPrice)
+        {
+            returnOb();
+            if (getListaProduse()[idx].getCant() == 0)
+                idxSetPret(idx, 0);
+            calculateTotalPrice();
+        }
     }
 };
 
 #pragma region Supraincarcare Cin Cout
-istream& operator>>(istream& in, Produs& produs) {
+istream& operator>>(istream& in, Produs& produs)
+{
     in >> produs.nume >> produs.cant;
     return in;
 }
 
-ostream& operator<<(ostream& out, Produs& produs) {
+ostream& operator<<(ostream& out, Produs& produs)
+{
     out << produs.nume << ' ';
     if (produs.cant != 0)
     {
         out << produs.cant << ' ' << "in stoc si costa ";
-        out << (produs.pret) / produs.cant << " Lei" << ' ';
+        out << (produs.pret) / produs.cant << " Lei per unitate" << ' ';
     }
     else
         out << "Nu mai avem acest produs";
@@ -207,14 +286,15 @@ public:
         for (int i = 0; i < 11; i++)
         {
             int x = rand() % (50 + 1) + 50;
-            stocProduse[i].setNume(listaProduse[i]);
+            stocProduse[i].setNume(ProductList[i]);
             stocProduse[i].setCant(x);
             stocProduse[i].setPret();
         }
         earnedMoney = 0;
         soldProducts = 0;
     }
-    void primireaClientilor() {
+    void primireaClientilor()
+    {
         for (int i = 0; i < 10; i++)
         {
             cout << "Clientul nr " << i + 1 << endl;
@@ -226,36 +306,37 @@ public:
             cout << "Clientul are " << c.getMoney() << " lei" << endl;
             cout << endl;
 
+            cout << "Introduceti lista:\n";
             c.setList();
+            cout << endl;
             c.calculateTotalPrice();
 
             if (c.getMoney() < c.getTotalPrice())
             {
-                cout << "Nu aveti destui bani, trebuie sa returnati ceva..\n";
-                while (c.getMoney() < c.getTotalPrice()) {
-                    c.returnOb();
-                    if (c.getListaProduse()[i].getCant() == 0)                      //return product section
-                        c.idxSetPret(i, 0);
-                    c.calculateTotalPrice();
-                }
+                cout << "Nu are destui bani, trebuie sa returneze ceva..\n";
+                c.getNormalPrice(i);
+                cout << endl;
             }
 
-            listaClient = c.getListaProduse();
-
+            
+            for (int i = 0; i < c.getCateProduse(); i++)
+            {
+                listaClient[i] = c.getListaProduse()[i];
+            }
             actualizareStoc_Client(c);
 
             for (int i = 0; i < c.getCateProduse(); i++)
             {
                 c.idxSetCant(i, listaClient[i].getCant());
-                if(listaClient[i].getCant() == 0)               
+                if (listaClient[i].getCant() == 0)
                     c.idxSetPret(i, 0);
             }
-           
+
             //Monitorizarea functionaliatii
-        /*    
+            cout << "\Lista finala a Clientului:\n";
             for (int i = 0; i < c.getCateProduse(); i++)
                 cout << c.getListaProduse()[i]<<endl;
-        */
+            
             c.cumpara();
 
             getStoc();
@@ -263,16 +344,84 @@ public:
             cout << endl;
             earnedMoney += c.getTotalPrice();
 
-            
-        }
+            delete[] listaClient;
 
+
+        }
     }
 
-    void getStoc() {
+    void randPerspective()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            cout << "Clientul nr " << i + 1 << endl;
+            Client c;
+
+            Produs* listaClient = new Produs[c.getCateProduse()];
+
+            cout << "Clientul cumpara " << c.getCateProduse() << " tipuri de produse" << endl;  //client prezentarea
+            cout << "Clientul are " << c.getMoney() << " lei" << endl;
+            cout << endl;
+
+            c.generateList();
+            for (int i = 0; i < c.getCateProduse(); i++)
+                cout << c.getListaProduse()[i] << endl;
+
+            cout << endl;
+            c.calculateTotalPrice();
+
+            if (c.getMoney() < c.getTotalPrice())
+            {
+                cout << "Nu are destui bani, trebuie sa returneze ceva..\n";
+                c.getNormalPrice(i);
+                cout << endl;
+            }
+
+            for (int i = 0; i < c.getCateProduse(); i++)
+                listaClient[i] = c.getListaProduse()[i];
+           
+
+            actualizareStoc_Client(c);
+
+            for (int i = 0; i < c.getCateProduse(); i++)
+            {
+                listaClient[i] = c.getListaProduse()[i];
+            }
+            actualizareStoc_Client(c);
+
+            for (int i = 0; i < c.getCateProduse(); i++)
+            {
+                c.idxSetCant(i, listaClient[i].getCant());
+                if (listaClient[i].getCant() == 0)
+                    c.idxSetPret(i, 0);
+            }
+
+
+            cout << "\Lista finala a Clientului:\n";
+            for (int i = 0; i < c.getCateProduse(); i++)
+                cout << c.getListaProduse()[i] << endl;
+
+            c.cumpara();
+
+            getStoc();
+
+            cout << endl;
+            earnedMoney += c.getTotalPrice();
+
+            delete[] listaClient;
+
+            string s;
+            cout << "\nApasa 'c' pentru a continua\n";
+            cin >> s;
+        }
+    }
+    void getStoc()
+    {
         cout << "Produse in stoc:\n";
-        for (int i = 0; i < 11; i++) {
+        for (int i = 0; i < 11; i++)
+        {
             string x = stocProduse[i].getNume();
-            if (x == "varza" or x == "paine" or x == "jucarii" or x == "blonda" or x == "vin" or x == "bruna" or x=="snickers" or x == "lapte")
+            if (x == "varza" or x == "paine" or x == "jucarii" or x == "blonda" or x == "vin" or x == "bruna" or x == "snickers" or x == "lapte")
                 if (stocProduse[i].getCant() != 0)
                     cout << stocProduse[i] << "buc\n";
                 else
@@ -310,10 +459,11 @@ public:
                 if (stocProduse[i].getNume() == c.getListaProduse()[j].getNume())
                 {
 
-                    if (stocProduse[i].getCant() == 0) {
+                    if (stocProduse[i].getCant() == 0)
+                    {
                         cout << stocProduse[i].getNume() << ' ';
                         cout << " nu mai avem acest produs in stoc\n";
-                        c.idxSetCant(j,0);
+                        c.idxSetCant(j, 0);
                         break;
                     }
                     if (stocProduse[i].getCant() >= c.getListaProduse()[j].getCant())
@@ -330,32 +480,76 @@ public:
                         stocProduse[i].setCant(0);
                     }
 
-                    if (c.getListaProduse()[j].getCant() == 0) {
+                    if (c.getListaProduse()[j].getCant() == 0)
+                    {
                         c.idxSetPret(j, 0);
                     }
                 }
     }
 
-    int getEarnedMoney() {
+    int getEarnedMoney()
+    {
         return earnedMoney;
     }
 
 };
 
 
+void MENIU()
+{
+    cout << "Bine ati venit in Magazinul Moldova:\n";
+    cout << "Proprietar: Hadirca Dionisie\n";
+
+
+    Magazin m;
+    string x;
+    do {
+        cout << "Alegeti din ce perspectiva doriti sa simulati magazinul\n";
+        cout << "1 - Perspectiva Clientilor\n";
+        cout << "2 - Perspectiva Cameramanului\n\n";
+
+        int n;
+        cin >> n;
+
+        switch (n)
+        {
+        case 1:
+
+            cout << "Veti simula Clientii care vin cu listele de cumparaturi.\n";
+            cout << "Aveti un nr random de bani si de produse in lista d-voastra.\n";
+            cout << "Cumparati ce doriti si ce se afla in stoc.\n";
+
+            m.getStoc();
+            cout << endl;
+            m.primireaClientilor();
+            cout << "Astazi am facut " << m.getEarnedMoney() << " Lei\n\n";
+
+            m.getStoc();
+            cout << endl;
+
+        case 2:
+
+            cout << "Veti simula Cameramanul care se uita dupa clienti si vede care si ce cumpara.\n";
+            m.getStoc();
+            cout << endl;
+            m.randPerspective();
+            cout << "Astazi am facut " << m.getEarnedMoney() << " Lei\n\n";
+
+            m.getStoc();
+            cout << endl;
+
+        }
+
+        cout << "Pentru a termina programul tastati 'exit'\n";
+        cout << "Pentru a continua tastati orice tasta\n";
+        cin >> x;
+    } while (x != "exit");
+}
+
+
 int main()
 {
     srand(time(NULL));
-
-    Magazin m;
-
-    m.getStoc();
-    cout << endl;
-    m.primireaClientilor();
-    cout << m.getEarnedMoney();
-
-    m.getStoc();
-
-    getchar();
+    MENIU();
     return 0;
 }
