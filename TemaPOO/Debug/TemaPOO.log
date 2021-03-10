@@ -1,3 +1,5 @@
 ﻿  TemaPOO.cpp
-C:\Users\denih\source\repos\TemaPOO\TemaPOO.cpp(348,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  TemaPOO.vcxproj -> C:\Users\denih\source\repos\TemaPOO\Debug\TemaPOO.exe
+C:\Users\denih\source\repos\TemaPOO\TemaPOO.cpp(336,21): warning C4129: 'L': unrecognized character escape sequence
+C:\Users\denih\source\repos\TemaPOO\TemaPOO.cpp(400,21): warning C4129: 'L': unrecognized character escape sequence
+C:\Users\denih\source\repos\TemaPOO\TemaPOO.cpp(310,13): error C2146: syntax error: missing ';' before identifier 'c'
+C:\Users\denih\source\repos\TemaPOO\TemaPOO.cpp(551,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
