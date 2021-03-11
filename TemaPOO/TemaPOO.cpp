@@ -184,7 +184,7 @@ public:
     {
         int j = 0;
         int max = listaProduse[0].getPret();
-        for (int i = 0; i < 11; i++)
+        for (int i = 0; i < cateProduse; i++)
         {
             if (listaProduse[i].getPret() > max)
             {
@@ -219,7 +219,6 @@ public:
         int sum = 0;
         for (int i = 0; i < cateProduse; i++)
         {
-
             sum += listaProduse[i].getPret();
         }
 
@@ -236,7 +235,6 @@ public:
         int i = getidxMaxPret();
         listaProduse[i].setCant(listaProduse[i].getCant() - 1);
         listaProduse[i].setPret();
-        cout << "returneaza 1 obiect de tip " << listaProduse[i].getNume() << endl;
     }
 
     void getNormalPrice(int idx)
@@ -244,7 +242,7 @@ public:
         while (money < totalPrice)
         {
             returnOb();
-            if (getListaProduse()[idx].getCant() == 0)
+            if (listaProduse[idx].getCant() == 0)
                 idxSetPret(idx, 0);
             calculateTotalPrice();
         }
@@ -276,7 +274,7 @@ ostream& operator<<(ostream& out, Produs& produs)
 class Magazin
 {
     Produs stocProduse[11];
-    Client listaClienti[10];
+    Client listaClienti[5];
     int earnedMoney;
     int soldProducts;
 
@@ -285,7 +283,7 @@ public:
     {
         for (int i = 0; i < 11; i++)
         {
-            int x = rand() % (50 + 1) + 50;
+            int x = rand() % (10 + 1) + 15;
             stocProduse[i].setNume(ProductList[i]);
             stocProduse[i].setCant(x);
             stocProduse[i].setPret();
@@ -295,7 +293,7 @@ public:
     }
     void primireaClientilor()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 5; i++)
         {
             cout << "Clientul nr " << i + 1 << endl;
             Client c;
@@ -318,7 +316,7 @@ public:
                 cout << endl;
             }
 
-            
+
             for (int i = 0; i < c.getCateProduse(); i++)
             {
                 listaClient[i] = c.getListaProduse()[i];
@@ -335,11 +333,11 @@ public:
             //Monitorizarea functionaliatii
             cout << "\Lista finala a Clientului:\n";
             for (int i = 0; i < c.getCateProduse(); i++)
-                cout << c.getListaProduse()[i]<<endl;
-            
+                cout << c.getListaProduse()[i] << endl;
+
             c.cumpara();
 
-            getStoc();
+
 
             cout << endl;
             earnedMoney += c.getTotalPrice();
@@ -352,7 +350,7 @@ public:
 
     void randPerspective()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 5; i++)
         {
             cout << "Clientul nr " << i + 1 << endl;
             Client c;
@@ -379,14 +377,8 @@ public:
 
             for (int i = 0; i < c.getCateProduse(); i++)
                 listaClient[i] = c.getListaProduse()[i];
-           
 
-            actualizareStoc_Client(c);
 
-            for (int i = 0; i < c.getCateProduse(); i++)
-            {
-                listaClient[i] = c.getListaProduse()[i];
-            }
             actualizareStoc_Client(c);
 
             for (int i = 0; i < c.getCateProduse(); i++)
@@ -403,7 +395,7 @@ public:
 
             c.cumpara();
 
-            getStoc();
+
 
             cout << endl;
             earnedMoney += c.getTotalPrice();
@@ -487,6 +479,10 @@ public:
                 }
     }
 
+    void setEarnedMoney(int x)
+    {
+        earnedMoney = x;
+    }
     int getEarnedMoney()
     {
         return earnedMoney;
@@ -526,6 +522,7 @@ void MENIU()
 
             m.getStoc();
             cout << endl;
+            m.setEarnedMoney(0);
 
         case 2:
 
@@ -537,6 +534,7 @@ void MENIU()
 
             m.getStoc();
             cout << endl;
+            m.setEarnedMoney(0);
 
         }
 
