@@ -17,7 +17,7 @@
 /// In final, clientul va cumpara Produsele doar daca are destui bani ca sa achite
 /// La final se afiseaza earnedMoney
 
-///Este prima oara cand lucrez in c++, de aceea, ar putea fi erori de scriere, sau niste bugguri care sunt de fapt feature-uri
+///Ar putea fi erori de scriere, sau niste bugguri care sunt de fapt feature-uri
 ///La momentul de fata am monitorizat toti pasii programului, iar acesta nu ar trebui sa dea erori
 ///daca exista erori, ma anuntati
 
@@ -501,8 +501,8 @@ void MENIU()
     string x;
     do {
         cout << "Alegeti din ce perspectiva doriti sa simulati magazinul\n";
-        cout << "1 - Perspectiva Clientilor\n";
-        cout << "2 - Perspectiva Cameramanului\n\n";
+        cout << "1 - Perspectiva 1\n";
+        cout << "2 - Perspectiva 2\n\n";
 
         int n;
         cin >> n;
@@ -526,7 +526,7 @@ void MENIU()
 
         case 2:
 
-            cout << "Veti simula Cameramanul care se uita dupa clienti si vede care si ce cumpara.\n";
+            cout << "Veti privi clientii de la persoana 3 observand cine si ce cumpara.\n";
             m.getStoc();
             cout << endl;
             m.randPerspective();
