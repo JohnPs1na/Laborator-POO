@@ -1,0 +1,13 @@
+﻿  TEMA 3 POO.cpp
+C:\Users\denih\source\repos\TEMA 3 POO\TEMA 3 POO.cpp(11,24): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\denih\source\repos\TEMA 3 POO\TEMA 3 POO.cpp(30,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\denih\source\repos\TEMA 3 POO\TEMA 3 POO.cpp(342,2): warning C4018: '<': signed/unsigned mismatch
+C:\Users\denih\source\repos\TEMA 3 POO\TEMA 3 POO.cpp(416,2): warning C4018: '<': signed/unsigned mismatch
+C:\Users\denih\source\repos\TEMA 3 POO\TEMA 3 POO.cpp(414): message : while compiling class template member function 'void Gestiune_redusa<Rhombus>::print(void)'
+C:\Users\denih\source\repos\TEMA 3 POO\TEMA 3 POO.cpp(472): message : see reference to function template instantiation 'void Gestiune_redusa<Rhombus>::print(void)' being compiled
+C:\Users\denih\source\repos\TEMA 3 POO\TEMA 3 POO.cpp(470): message : see reference to class template instantiation 'Gestiune_redusa<Rhombus>' being compiled
+C:\Users\denih\source\repos\TEMA 3 POO\TEMA 3 POO.cpp(259,2): warning C4018: '<': signed/unsigned mismatch
+C:\Users\denih\source\repos\TEMA 3 POO\TEMA 3 POO.cpp(257): message : while compiling class template member function 'void Gestiune<Rectangle>::print(void)'
+C:\Users\denih\source\repos\TEMA 3 POO\TEMA 3 POO.cpp(436): message : see reference to function template instantiation 'void Gestiune<Rectangle>::print(void)' being compiled
+C:\Users\denih\source\repos\TEMA 3 POO\TEMA 3 POO.cpp(434): message : see reference to class template instantiation 'Gestiune<Rectangle>' being compiled
+  TEMA 3 POO.vcxproj -> C:\Users\denih\source\repos\TEMA 3 POO\Debug\TEMA 3 POO.exe
