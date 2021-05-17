@@ -240,7 +240,7 @@ protected:
     vector<tip_figura> vec_figuri;
 public:
     //citire/afisare
-    void read() {
+    virtual void read() {
         tip_figura x;
         int tru;
         while (true) {
@@ -254,7 +254,7 @@ public:
             }
         }
     }
-    void print() {
+    virtual void print() {
         cout << "-----------------------------------";
         for (int i = 0; i < vec_figuri.size(); i++) {
             cout << vec_figuri[i] << '\n';
@@ -323,7 +323,7 @@ class Gestiune<Trapeze*> {
 protected:
     vector<Trapeze*> vec_figuri;
 public:
-    void read() {
+    virtual void read() {
         int tru;
         while (true) {
             Trapeze* x = new Trapeze();
@@ -337,7 +337,7 @@ public:
             }
         }
     }
-    void print() {
+    virtual void print() {
         cout << "-----------------------------------";
         for (int i = 0; i < vec_figuri.size(); i++) {
             cout << *vec_figuri[i] << '\n';
@@ -401,7 +401,7 @@ public:
         int a = 0;
         while (a < limit) {
             cin >> x;
-            new_vec.push_back(x);
+            this->vec_figuri.push_back(x);
             cout << "More? 1)yes/2)no";
             cin >> tru;
             if (tru == 2) {
@@ -413,8 +413,8 @@ public:
 
     void print() {
         cout << "---------------------------------";
-        for (int i = 0; i < new_vec.size(); i++) {
-            cout << new_vec[i]<<'\n';
+        for (int i = 0; i < this->vec_figuri.size(); i++) {
+            cout << this->vec_figuri[i]<<'\n';
         }
         cout << "---------------------------------";
         cout << endl;
@@ -424,13 +424,13 @@ public:
         if (index >= limit) {
             cout << "peste limita";
         }
-        else if (index >= new_vec.size()) {
+        else if (index >= this->vec_figuri.size()) {
             cout << "\ntot peste marimea vectorului dar iti facem un push_back\n";
-            new_vec.push_back(x);
+            this->vec_figuri.push_back(x);
         }
         else
         {
-            new_vec[index] = x;
+            this->vec_figuri[index] = x;
         }
     }
 };
@@ -481,14 +481,16 @@ void MENIU() {
             while (true)
             {
                 cout << "Vom Gestiona romburi";
-                Gestiune_redusa<Rhombus> roka;
-                roka.read();
-                roka.print();
+                Gestiune_redusa<Rhombus> roarr;
+                roarr.read();
+                roarr.print();
 
                 Rhombus r;
                 cin >> r;
 
-                roka.insert(r, 1);
+                roarr.insert(r, 1);
+                cout << roarr[1];
+                break;
             }
             break;
         }
