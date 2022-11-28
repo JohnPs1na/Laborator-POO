@@ -18,7 +18,6 @@ const float pi = 3.1415;
 //Figura dumnevoasta nu va fi VALIDA pana cand nu veti introduce un input adecvat sau ne lasati pe noi sa va ajutam
 //De la Romb in jos nu prea aveti nici o sansa sa introduceti o figura VALIDA, deci veti avea nevoie de ajutorul nostru
 //Nu exista bugguri, Exista Feature-uri
-//Totusi daca observati vre-o eroare in program va rugam sa ne anuntati
 //Have Fun drawing
 
 
